@@ -23,3 +23,11 @@ latest.dump
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+*console.log
+
+# Ignore application configuration
+/config/application.yml
+
+# Ignore uploaded files in development
+/storage/*
+.byebug_history

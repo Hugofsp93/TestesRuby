@@ -79,6 +79,7 @@ pt-BR:
     attributes:
       user:
         id: "Id"
+        avatar: "Avatar"
         email: "Email"
         first_name: "Primeiro nome"
         last_name: "Último nome"

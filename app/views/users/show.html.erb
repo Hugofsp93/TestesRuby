@@ -23,6 +23,10 @@
   <div class="card-body card-padding">
     <table class="table table-show">
       <tr>
+        <th><%= t("activerecord.attributes.user.avatar") %>:</th>
+        <td><%= image_tag @user.avatar.variant(resize: "100x100") if @user.avatar.attached? %></td>
+      </tr>
+      <tr>
         <th><%= t("activerecord.attributes.user.email") %>:</th>
         <td><%= @user.email %></td>
       </tr>

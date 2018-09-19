@@ -21,25 +21,23 @@
     </ul>
   </div>
   <div class="card-body card-padding">
+    <div class="row">
     <%- attributes.each do |attribute| -%>
-      <div class="row">
-        <div class="col-xs-12">
-          <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>') %></label><br/>&nbsp;
-          <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-        </div>
+      <div class="col-xs-12">
+        <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>') %></label><br/>&nbsp;
+        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
       </div>
     <%- end -%>
-      <div class="row">
-        <div class="col-xs-12">
-          <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.created_at') %></label><br/>&nbsp;
-          <%%= @<%= singular_table_name %>.created_at %>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.created_at') %></label><br/>&nbsp;
+        <%%= @<%= singular_table_name %>.created_at %>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.updated_at') %></label><br/>&nbsp;
-          <%%= @<%= singular_table_name %>.updated_at %>
-        </div>
+      <div class="col-sm-6">
+        <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.updated_at') %></label><br/>&nbsp;
+        <%%= @<%= singular_table_name %>.updated_at %>
       </div>
+    </div>
   </div>
 </div>
