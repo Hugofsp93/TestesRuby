@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
-      format.html { redirect_to root_url, :alert => exception.message, status: 403 }
-      format.json { render json: {error: :access_denied}, status: 403 }
+      format.html { redirect_to root_url, :alert => exception.message }
+      format.json { render json: {error: :access_denied} }
     end
   end
 
