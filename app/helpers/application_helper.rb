@@ -50,6 +50,33 @@ module ApplicationHelper
 		result_hash
 	end
 
+	def changeset_to_new_hash(changeset, item_type)
+		result_hash = {}
+		set = changeset
+		set = {} unless set
+		clean_hash(set)
+		set.each do |k, v|
+			name = k
+			values = v
+			if name.end_with? "_id"
+				v1 = v[0]
+				v2 = v[1]
+				name = name[0..(name.size - 4)]
+				entity1 = eval(name.classify).where(id: v1).first
+				entity1 = "id: #{v}" unless entity1
+				entity2 = eval(name.classify).where(id: v2).first
+				entity2 = "id: #{v}" unless entity2
+				values = [entity1, entity2]
+			else
+				values = v
+			end
+			t_name = t("activerecord.attributes.#{item_type.underscore}.#{name}")
+			name = t_name unless t_name.start_with? "<span"
+			result_hash[name] = values
+		end
+		result_hash
+	end
+
 	def object_to_pretty_hash(object)
 		return {} unless object
 		set = object.attributes

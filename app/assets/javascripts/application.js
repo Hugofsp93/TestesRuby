@@ -71,7 +71,7 @@ $(document).ready(function(){
         }
     });
     $(":input").inputmask();
-    $("img, span, a").tooltip();
+    $('img, span, a[data-toggle!="popover"]').tooltip();
     $("input.btn-save").tooltip();
     $('[data-toggle="popover"]').popover()
     $("select").change(function (e) {

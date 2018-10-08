@@ -1,25 +1,40 @@
 <div class="card">
   <div class="card-header">
-    <h2><%= t('activerecord.models.user.other') %></h2>
+    <h2>
+      <%= t('activerecord.models.user.other') %>
+      <% if controller_name == "versions" %>
+        <small style="color: red">
+          (apenas registros deletados)
+        </small>
+      <% end %>
+    </h2>
 
     <ul class="actions">
-        <li>
-            <a href="" title="<%= t('Refresh') %>">
-                <i class="zmdi zmdi-refresh-alt"></i>
-            </a>
-        </li>
-        <li>
-            <%= link_to new_user_path, title: t('Add') do %>
-                <i class="zmdi zmdi-plus"></i>
-            <% end %>
-        </li>
+      <li>
+        <%= link_to users_path, title: t('activerecord.link.back_to_list') do %>
+          <i class="zmdi zmdi-arrow-left"></i>
+        <% end if controller_name == "versions" %>
+      </li>
+      <li>
+        <a href="" title="<%= t('Refresh') %>">
+          <i class="zmdi zmdi-refresh-alt"></i>
+        </a>
+      </li>
+      <li>
+        <%= link_to new_user_path, title: t('Add') do %>
+          <i class="zmdi zmdi-plus"></i>
+        <% end if can?(:new, User) && controller_name != "versions" %>
+      </li>
     </ul>
 </div>
   <div class="card-body card-padding">
-    <%= render 'layouts/search' %>
+    <%= render 'layouts/search' unless controller_name == "versions" %>
     <table class="table table-striped">
       <thead>
         <tr>
+          <% if controller_name == "versions" %>
+            <th style="color: red">Deletado em</th>
+          <% end %>
           <th><%= t('activerecord.attributes.user.name') %></th>
           <th><%= t('activerecord.attributes.user.email') %></th>
           <th></th>
@@ -29,12 +44,17 @@
       </thead>
 
       <tbody>
-        <% @users.each do |user| %>
+        <% @users_a = @users unless controller_name == "versions" %>
+        <% @users_a = @users.map { |user| user.reify } if controller_name == "versions" %>
+        <% @users_a.each do |user| %>
           <tr>
+            <% if controller_name == "versions" %>
+              <td style="color: red"><%= user.version.created_at %></td>
+            <% end %>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
             <td>
-              <%= link_to user, title: t("Show"), class: "waves-effect" do %>
+              <%= link_to (user.version.present? ? show_version_path(model_name: "users", id: user.version.id) : user), title: t("Show"), class: "waves-effect" do %>
                 <span class="zmdi zmdi-search"></span>
               <% end %>
             </td>
@@ -58,6 +78,13 @@
     </table>
 
     <%= will_paginate @users, class: "apple_pagination", previous_label: "← Anterior", next_label: "Próxima →" %>
+
+    <br/>
+    <div class="text-center">
+      <%= link_to index_versions_path(model_name: "users"), style: "color: red" do %>
+        Lista de registros deletados
+      <% end if can?(:read, :deleted_records) && controller_name != "versions" %>
+    </div>
   </div>
   <br>
 </div>

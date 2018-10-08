@@ -7,6 +7,11 @@ pt-BR:
   "true": "Sim"
   "false": "Não"
   New: "Novo"
+  papertrail:
+    events:
+      create: "Criação"
+      update: "Atualização"
+      destroy: "Deleção"
   search_here: "Pesquise aqui"
   Edit: "Editar"
   Add: "Adicionar"

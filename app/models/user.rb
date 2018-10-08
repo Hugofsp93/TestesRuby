@@ -30,7 +30,18 @@
 class User < ActiveRecord::Base
   include PgSearch
   has_many :comments, as: :commenteable
-  has_paper_trail :ignore => [:updated_at, :remember_created_at, :last_sign_in_at, :last_sign_in_ip, ]
+  has_paper_trail :ignore => [
+    :updated_at, 
+    :remember_created_at, 
+    :last_sign_in_at, 
+    :last_sign_in_ip, 
+    :sign_in_count, 
+    :encrypted_password, 
+    :reset_password_token, 
+    :reset_password_sent_at,
+    :current_sign_in_at,
+		:current_sign_in_ip
+  ]
   rolify
   has_one_attached :avatar
   
