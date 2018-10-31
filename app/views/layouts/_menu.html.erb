@@ -14,23 +14,15 @@
 }
 
 </style>
-<!-- <ul>
-  <li><%= link_to t('home'), home_index_path %></li>
-  <% if can? :manage, User %>
-    <li><%= link_to t('activerecord.models.user.other'), users_path %></li>
-  <% end %>
-  <% if current_user && current_user.has_role?(:admin) %>
-    <li><%= link_to t('auditoria'), home_database_changes_path %></li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li><%= link_to(t('exit'), destroy_user_session_path, :method => :delete) %></li>
-  <% else %>
+<ul class="main-menu">
+  <% unless user_signed_in? %>
     <li><%= link_to('Faça login', new_user_session_path)  %></li>
   <% end %>
-</ul> -->
-<ul class="main-menu">
-
   <% if current_user %>
+    <li><%= link_to "Home", home_index_path %></li>
+    <% if can? :manage, User %>
+      <li><%= link_to t('activerecord.models.user.other'), users_path %></li>
+    <% end %>
     <li class="separator"><hr/></li>
     <li>
       <%= link_to edit_user_registration_path do %>

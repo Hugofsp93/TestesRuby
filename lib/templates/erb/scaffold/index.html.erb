@@ -48,6 +48,12 @@
         <tbody>
           <%% @<%= table_name %>_a = @<%= table_name %> unless controller_name == "versions" %>
           <%% @<%= table_name %>_a = @<%= table_name %>.map { |<%= singular_table_name %>| <%= singular_table_name %>.reify } if controller_name == "versions" %>
+
+          <%% if @<%= table_name %>_a.count == 0 %>
+            <tr>
+              <td colspan="99" class="text-center">Nenhum registro encontrado.</td>
+            </tr>
+          <%% end %>
           <%% @<%= table_name %>_a.each do |<%= singular_table_name %>| %>
             <tr>
               <%% if controller_name == "versions" %>

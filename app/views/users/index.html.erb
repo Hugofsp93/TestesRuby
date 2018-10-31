@@ -46,6 +46,11 @@
       <tbody>
         <% @users_a = @users unless controller_name == "versions" %>
         <% @users_a = @users.map { |user| user.reify } if controller_name == "versions" %>
+        <% if @users_a.count == 0 %>
+          <tr>
+            <td colspan="99" class="text-center">Nenhum registro encontrado.</td>
+          </tr>
+        <% end %>
         <% @users_a.each do |user| %>
           <tr>
             <% if controller_name == "versions" %>
