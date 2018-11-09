@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.is_active = true
+    params[:user].delete :avatar if params[:user][:avatar].blank?
 
     status = @user.save
 
@@ -59,6 +60,8 @@ class UsersController < ApplicationController
       params[:user].delete :avatar
       @user.avatar.purge
     end
+    params[:user].delete :avatar if params[:user][:avatar].blank?
+    
 
     params[:user].delete :is_active unless current_user.has_role? :admin
     status = @user.update(user_params)
