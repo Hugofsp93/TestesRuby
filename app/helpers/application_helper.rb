@@ -62,10 +62,15 @@ module ApplicationHelper
 				v1 = v[0]
 				v2 = v[1]
 				name = name[0..(name.size - 4)]
-				entity1 = eval(name.classify).where(id: v1).first
-				entity1 = "id: #{v}" unless entity1
-				entity2 = eval(name.classify).where(id: v2).first
-				entity2 = "id: #{v}" unless entity2
+				begin
+					entity1 = eval(name.classify).where(id: v1).first
+					entity1 = "id: #{v}" unless entity1
+					entity2 = eval(name.classify).where(id: v2).first
+					entity2 = "id: #{v}" unless entity2
+				rescue
+					entity1 = "id: #{v1}"
+					entity2 = "id: #{v2}"
+				end
 				values = [entity1, entity2]
 			else
 				values = v
