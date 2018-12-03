@@ -5,7 +5,8 @@ class ImageInput < Formtastic::Inputs::FileInput
     name = self.object_name.to_s + "[" + self.method.to_s + "]"
     removal = self.object_name.to_s + "[" + self.method.to_s + "_remove" + "]"
     removal_id = id + "_remove"
-    lines = [self.hint_text];
+    lines = []
+    lines = [self.hint_text] if self.hint_text.present?
     lines += self.errors
     lines = lines.join("<br/>")
 

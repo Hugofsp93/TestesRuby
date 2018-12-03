@@ -2,7 +2,8 @@ class PhoneInput < Formtastic::Inputs::StringInput
 
   def to_html
     if self.errors? || self.hint?
-      lines = [self.hint_text];
+      lines = []
+      lines = [self.hint_text] if self.hint_text.present?
       lines += self.errors
       lines = lines.join("<br/>")
       return ("<script language='javascript'>if (!(typeof tmt === 'function')) {function tmt(e) { if (e.value.length == 15 && e.value[14] != '_') $(e).inputmask({ mask: '(99) 99999 9999', showMaskOnHover: false, greedy: false }); else $(e).inputmask({ mask: '(99) 9999 9999[9]', showMaskOnHover: false, greedy: false });}}</script>" +

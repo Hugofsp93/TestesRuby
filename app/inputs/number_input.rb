@@ -2,7 +2,8 @@ class NumberInput < Formtastic::Inputs::NumberInput
 
   def to_html
     if self.errors? || self.hint?
-      lines = [self.hint_text];
+      lines = []
+      lines = [self.hint_text] if self.hint_text.present?
       lines += self.errors
       lines = lines.join("<br/>")
       return "<div class='fg-float form-group #{'has-error' if self.errors?}'>#{super}<span class='help-block'>#{lines}</span></div>".html_safe
