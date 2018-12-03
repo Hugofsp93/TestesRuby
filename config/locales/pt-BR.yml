@@ -7,12 +7,24 @@ pt-BR:
   "true": "Sim"
   "false": "Não"
   New: "Novo"
+  papertrail:
+    events:
+      create: "Criação"
+      update: "Atualização"
+      destroy: "Deleção"
   search_here: "Pesquise aqui"
   Edit: "Editar"
   Add: "Adicionar"
   Refresh: "Atualizar"
-  admin: "Administrador"
-  operator: "Operador"
+  roles:
+    names:
+      super_admin: "Super administrador"
+      admin: "Administrador"
+      operator: "Operador"
+    descriptions:
+      super_admin: "Pode criar outros administradores"
+      admin: "Pode editar todos os registros"
+      operator: "Usuário operacional"
   Are you sure?: "Tem certeza?"
   Destroy: "Remover"
   change_password_helper_text: "Preencha a senha apenas se deseja alterá-la"
@@ -79,6 +91,7 @@ pt-BR:
     attributes:
       user:
         id: "Id"
+        avatar: "Avatar"
         email: "Email"
         first_name: "Primeiro nome"
         last_name: "Último nome"

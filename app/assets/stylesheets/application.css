@@ -24,7 +24,6 @@
  * require template/fullcalendar.print
  *= require template/jquery.mCustomScrollbar
  *= require template/jquery.nouislider
- *= require template/lightGallery
  *= require template/material-design-iconic-font
  * require template/material-shadows-prefixed
  * require template/material-shadows
@@ -41,6 +40,7 @@
  *= require main_template_style
  *= require formtastic
  * require my_formtastic_changes
+ *= require lightbox
  */
 
  label.fg-label, li fieldset legend label, .checkbox legend label, .radio legend label {
@@ -392,4 +392,8 @@ table td {
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+div.record-show div.row>div {
+    border-bottom: 1px solid #e0e0e0;
 }

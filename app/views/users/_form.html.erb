@@ -1,5 +1,6 @@
-<%= semantic_form_for @user do |f| %>
+<%= semantic_form_for @user, :html => { :multipart => true } do |f| %>
   <%= f.inputs do %>
+    <%= f.input :avatar, as: :image %>
     <%= f.input :email %>
     <%= f.input :name %>
     <%= f.input :password %>
@@ -7,7 +8,13 @@
     <!-- <%= f.input :locale, as: :select, collection: I18n.available_locales.map { |x| x.to_s } %> -->
     <% if current_user.has_role? :admin %>
       <%= f.input :is_active %>
-      <%= f.input :roles, as: :check_boxes, collection: Hash[Role.global.map{|r| [t(r.name),r.id]}] %>
+      <%= f.input :roles, as: :check_boxes, collection: Hash[
+        Role.global.map do |r| 
+          [
+            "#{t("roles.names.#{r.name}")}<span class=\"small\"> (#{t("roles.descriptions.#{r.name}")})</span>".html_safe, 
+            r.id
+          ]
+        end] %>
     <% end %>
   <% end %>
 

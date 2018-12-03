@@ -29,6 +29,11 @@ Roadmaps::Application.routes.draw do
   # mount ActionCable.server => '/cable'
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+
+    # Deve ficar no topo, no arquivo de rotas
+    get 'versions/:model_name', to: "versions#index", as: 'index_versions'
+    get 'versions/:model_name/:id', to: "versions#show", as: 'show_version'
+
     concern :commenteable do
       resources :comments, only: [:index, :create, :destroy]
     end

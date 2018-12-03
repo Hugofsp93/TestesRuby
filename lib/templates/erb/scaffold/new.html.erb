@@ -5,16 +5,16 @@
     <ul class="actions">
       <li>
         <%%= link_to <%= table_name %>_path, title: t('activerecord.link.back_to_list') do %>
-            <i class="zmdi zmdi-arrow-left"></i>
+          <i class="zmdi zmdi-arrow-left"></i>
         <%% end %>
       </li>
       <li>
-          <a href="" title="<%%= t('Refresh') %>">
-              <i class="zmdi zmdi-refresh-alt"></i>
-          </a>
+        <a href="" title="<%%= t('Refresh') %>">
+          <i class="zmdi zmdi-refresh-alt"></i>
+        </a>
       </li>
     </ul>
-</div>
+  </div>
   <div class="card-body card-padding">
 		<%%= render 'form' %>
 	</div>

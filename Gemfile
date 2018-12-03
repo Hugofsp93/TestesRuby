@@ -1,15 +1,17 @@
 source 'https://rubygems.org'
-ruby "2.3.3"
+ruby "2.4.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails', '5.0.0'
-gem 'rails', '5.1.6'
+gem 'rails', '5.2.1'
 
 # gem "httparty"
 
 #File management
-gem 'paperclip'
-gem 'aws-sdk', '>= 2.0.0'
+# gem 'paperclip'
+# gem 'aws-sdk', '>= 2.0.0'
+gem "aws-sdk-s3", require: false
+gem 'image_processing', '~> 1.2'
 
 #PaperTrail to track any changes on tables
 gem 'paper_trail'
@@ -21,8 +23,12 @@ gem 'annotate'
 #User Roles
 gem "rolify"
 
-# Fast json generatin
+# Fast json generation
 gem 'oj'
+
+# Error catching with errbit
+gem 'airbrake-ruby', '1.3.1'
+gem 'airbrake', '5.3.0'
 
 #Excel handling (import only)
 # gem 'roo', '1.13.2'
@@ -34,6 +40,13 @@ gem 'oj'
 #PDF Generation
 # gem 'wicked_pdf'
 # gem 'wkhtmltopdf-binary'
+
+
+#Env file with figaro
+gem 'figaro'
+
+# Nested forms
+gem "cocoon"
 
 #Pagination
 gem "will_paginate"
@@ -100,9 +113,6 @@ gem 'coffee-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 1.2'

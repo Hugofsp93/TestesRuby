@@ -50,7 +50,6 @@
 //= require template/jquery.placeholder
 //= require template/jquery.simpleWeather
 //= require template/jquery.sparkline
-//= require template/lightGallery
 //= require template/mediaelement-and-player
 //= require template/mediaelement
 //= require template/mediaelementplayer
@@ -61,7 +60,7 @@
 //= require template/sweet-alert
 //= require template/typeahead.jquery
 //= require template/waves
-// require turbolinks
+//= require lightbox
 
 $(document).ready(function(){
     $.extend($.inputmask.defaults.definitions, {
@@ -72,7 +71,7 @@ $(document).ready(function(){
         }
     });
     $(":input").inputmask();
-    $("img, span, a").tooltip();
+    $('img, span, a[data-toggle!="popover"]').tooltip();
     $("input.btn-save").tooltip();
     $('[data-toggle="popover"]').popover()
     $("select").change(function (e) {
@@ -782,15 +781,6 @@ $(document).ready(function(){
          Waves.attach('.btn-icon, .btn-float', ['waves-circle', 'waves-float']);
         Waves.init();
     })();
-
-    /*
-     * Lightbox
-     */
-    if ($('.lightbox')[0]) {
-        $('.lightbox').lightGallery({
-            enableTouch: true
-        });
-    }
 
     /*
      * Link prevent

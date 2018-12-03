@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.is_active = true
+    params[:user].delete :avatar if params[:user][:avatar].blank?
 
     status = @user.save
 
@@ -54,6 +55,13 @@ class UsersController < ApplicationController
       params[:user].delete :password
       params[:user].delete :password_confirmation
     end
+
+    if params[:user][:avatar_remove].to_i == 1
+      params[:user].delete :avatar
+      @user.avatar.purge
+    end
+    params[:user].delete :avatar if params[:user][:avatar].blank?
+    
 
     params[:user].delete :is_active unless current_user.has_role? :admin
     status = @user.update(user_params)
@@ -96,6 +104,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password, :name, :locale, :is_active)
+      params.require(:user).permit(:email, :password, :name, :locale, :is_active, :avatar)
     end
 end

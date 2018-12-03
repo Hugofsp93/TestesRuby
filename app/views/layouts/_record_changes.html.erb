@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Alterações no registro</h2>
+  </div>
+  <div class="card-body card-padding">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Usuário</th>
+            <th>Evento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @object.versions.reorder(id: :desc).each do |version| %>
+            <tr>
+              <td><%= version.created_at %></td>
+              <% user = User.find_by_id(version.whodunnit) %>
+              <td><%= user ? user.email : "Conta do Sistema"  %></td>
+
+              <% hash = changeset_to_new_hash(version.changeset, version.item_type) %>
+              <td>
+                <b style="font-size: 90%">
+                  <%= link_to t("papertrail.events.#{version.event}"), "javascript:", class: "btn btn-link", role: "button", tabindex: "0", "data-toggle" => "popover", "data-trigger" => "focus", 
+                    "data-placement" => "left", "data-title" => t("papertrail.events.#{version.event}"), 
+                    "data-html" => "true", "data-content" => (hash.map { |k, v| "<b>#{k}:</b> #{v[1]}" }.join("<br/>")).html_safe.gsub("\"", "\\\"") unless version.event == "destroy" %>
+                  <%= link_to t("papertrail.events.#{version.event}"), "javascript:", class: "btn btn-link", role: "button", tabindex: "0" if version.event == "destroy" %>
+                </b>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style rel="stylesheet" type="text/css">
+  .popover{
+    min-width: 400px;
+  }
+</style>

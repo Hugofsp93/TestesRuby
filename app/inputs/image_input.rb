@@ -1,4 +1,5 @@
 class ImageInput < Formtastic::Inputs::FileInput
+  include Rails.application.routes.url_helpers
   def to_html
     id = self.object_name.to_s.gsub("[", "_").gsub("]", "_") + "_" + self.method.to_s
     name = self.object_name.to_s + "[" + self.method.to_s + "]"
@@ -11,9 +12,9 @@ class ImageInput < Formtastic::Inputs::FileInput
     return ("<div class='form-group #{'has-error' if self.errors?}'>" +
               "<li class='' id='#{id}_input'>" +
                 "<label for='#{id}_id' class='fg-label'>#{self.label_text}</label>" +
-                "<div class='fileinput #{self.object.send("#{self.method}?") ? "fileinput-exists" : "fileinput-new"}' data-provides='fileinput' style='display: block;'>" +
+                "<div class='fileinput #{self.object.send(self.method).attached? ? "fileinput-exists" : "fileinput-new"}' data-provides='fileinput' style='display: block;'>" +
                   "<div class='fileinput-preview thumbnail' data-trigger='fileinput' style='line-height: 150px; height: 150px;'>" +
-                  (self.object.send("#{self.method}?") ? "<img src='#{self.object.send("#{self.method}").url(:thumb)}'/>" : "") +
+                  (self.object.send(self.method).attached? ? "<img src='#{rails_blob_path(self.object.send("#{self.method}"), only_path: true)}'/>" : "") +
                   "</div><br/>" +
                   "<span class='btn btn-info btn-sm btn-file waves-effect'>" +
                       "<span class='fileinput-new'>Selecione a imagem</span>" +

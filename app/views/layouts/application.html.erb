@@ -56,17 +56,17 @@
     </header>
 
     <section id="main">
-      <% if current_user %>
+      <%# if current_user %>
         <aside id="sidebar" class="sidebar c-overflow">
           <%= render "layouts/menu" %>
         </aside>
-      <% else %>
-        <style rel="stylesheet" type="text/css">
+      <%# else %>
+        <!--style rel="stylesheet" type="text/css">
           #menu-trigger {
             display: none;
           }
-        </style>
-      <% end %>
+        </style-->
+      <%# end %>
 
       <section id="content">
         <div class="container">
