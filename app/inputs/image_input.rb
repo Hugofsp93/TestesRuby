@@ -15,7 +15,7 @@ class ImageInput < Formtastic::Inputs::FileInput
                 "<label for='#{id}_id' class='fg-label'>#{self.label_text}</label>" +
                 "<div class='fileinput #{self.object.send(self.method).attached? ? "fileinput-exists" : "fileinput-new"}' data-provides='fileinput' style='display: block;'>" +
                   "<div class='fileinput-preview thumbnail' data-trigger='fileinput' style='line-height: 150px; height: 150px;'>" +
-                  (self.object.send(self.method).attached? ? "<img src='#{rails_blob_path(self.object.send("#{self.method}"), only_path: true)}'/>" : "") +
+                  (self.object.send(self.method).attached? ? "<img src='#{Rails.application.routes.url_helpers.url_for(self.object.send("#{self.method}").variant(resize: "200>"))}'/>" : "") +
                   "</div><br/>" +
                   "<span class='btn btn-info btn-sm btn-file waves-effect'>" +
                       "<span class='fileinput-new'>Selecione a imagem</span>" +

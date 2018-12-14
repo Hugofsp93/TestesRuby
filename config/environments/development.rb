@@ -27,6 +27,7 @@ Roadmaps::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+    Rails.application.routes.default_url_options[:host] = 'localhost:3000'
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   config.web_console.whiny_requests = false
