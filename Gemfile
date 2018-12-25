@@ -23,6 +23,10 @@ gem 'annotate'
 #User Roles
 gem "rolify"
 
+# better timezone info
+gem 'tzinfo'
+gem 'tzinfo-data'
+
 # Fast json generation
 gem 'oj'
 

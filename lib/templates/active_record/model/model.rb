@@ -10,20 +10,23 @@ class <%= class_name %> < <%= parent_class_name.classify %>
   has_paper_trail
 
   def self.search(search, page)
-    if search && search != ""
-      paginate(:per_page => 20, :page => page).full_search(search)
+    if search && search != ''
+      paginate(per_page: 20, page: page).full_search(search)
     else
-      paginate(:per_page => 20, :page => page)
+      paginate(per_page: 20, page: page)
     end
   end
 
   pg_search_scope :full_search,
-    :against => [<%= (attributes.map { |a| ":#{a.name}"}).join(", ") %>],
-    :using => {
-      :tsearch => {:prefix => true},
-      :dmetaphone => {},
-      :trigram => {}
+    against: %i[<%= (attributes.select { |a| %i[string text].include?(a.type) }.map { |a| a.name}).join(' ') %>],
+    associated_against: {
+    	#belongs_to_relation: %i[field1 field2 field3]
     },
-    :ignoring => :accents
+    using: {
+      tsearch: {prefix: true},
+      dmetaphone: {},
+      trigram: {}
+    },
+    ignoring: :accents
 end
 <% end -%>
