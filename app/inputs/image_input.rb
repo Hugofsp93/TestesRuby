@@ -1,19 +1,21 @@
 class ImageInput < Formtastic::Inputs::FileInput
+  include Rails.application.routes.url_helpers
   def to_html
     id = self.object_name.to_s.gsub("[", "_").gsub("]", "_") + "_" + self.method.to_s
     name = self.object_name.to_s + "[" + self.method.to_s + "]"
     removal = self.object_name.to_s + "[" + self.method.to_s + "_remove" + "]"
     removal_id = id + "_remove"
-    lines = [self.hint_text];
+    lines = []
+    lines = [self.hint_text] if self.hint_text.present?
     lines += self.errors
     lines = lines.join("<br/>")
 
     return ("<div class='form-group #{'has-error' if self.errors?}'>" +
               "<li class='' id='#{id}_input'>" +
                 "<label for='#{id}_id' class='fg-label'>#{self.label_text}</label>" +
-                "<div class='fileinput #{self.object.send("#{self.method}?") ? "fileinput-exists" : "fileinput-new"}' data-provides='fileinput' style='display: block;'>" +
+                "<div class='fileinput #{self.object.send(self.method).attached? ? "fileinput-exists" : "fileinput-new"}' data-provides='fileinput' style='display: block;'>" +
                   "<div class='fileinput-preview thumbnail' data-trigger='fileinput' style='line-height: 150px; height: 150px;'>" +
-                  (self.object.send("#{self.method}?") ? "<img src='#{self.object.send("#{self.method}").url(:thumb)}'/>" : "") +
+                  (self.object.send(self.method).attached? ? "<img src='#{Rails.application.routes.url_helpers.url_for(self.object.send("#{self.method}").variant(auto_orient: true, resize: "200>"))}'/>" : "") +
                   "</div><br/>" +
                   "<span class='btn btn-info btn-sm btn-file waves-effect'>" +
                       "<span class='fileinput-new'>Selecione a imagem</span>" +

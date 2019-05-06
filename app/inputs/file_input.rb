@@ -2,7 +2,8 @@ class FileInput < Formtastic::Inputs::FileInput
   def to_html
     id = self.object_name.to_s + "_" + self.method.to_s
     name = self.object_name.to_s + "[" + self.method.to_s + "]"
-    lines = [self.hint_text];
+    lines = []
+    lines = [self.hint_text] if self.hint_text.present?
     lines += self.errors
     lines = lines.join("<br/>")
 

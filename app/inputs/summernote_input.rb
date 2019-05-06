@@ -2,7 +2,8 @@ class SummernoteInput < Formtastic::Inputs::TextInput
 
   def to_html
     if self.errors? || self.hint?
-      lines = [self.hint_text];
+      lines = []
+      lines = [self.hint_text] if self.hint_text.present?
       lines += self.errors
       lines = lines.join("<br/>")
       lines = lines.byteslice(5,lines.length)

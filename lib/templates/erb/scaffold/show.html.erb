@@ -4,7 +4,7 @@
 
     <ul class="actions">
       <li>
-        <%%= link_to <%= table_name %>_path, title: t('activerecord.link.back_to_list') do %>
+        <%%= link_to (controller_name == "versions" ? index_versions_path(model_name: "<%= table_name %>") : <%= table_name %>_path), title: t('activerecord.link.back_to_list') do %>
             <i class="zmdi zmdi-arrow-left"></i>
         <%% end %>
       </li>
@@ -20,26 +20,26 @@
       </li>
     </ul>
   </div>
-  <div class="card-body card-padding">
+  <div class="card-body card-padding record-show">
+    <div class="row">
     <%- attributes.each do |attribute| -%>
-      <div class="row">
-        <div class="col-xs-12">
-          <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>') %></label><br/>&nbsp;
-          <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
-        </div>
+      <div class="col-xs-12">
+        <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>') %></label><br/>&nbsp;
+        <%%= @<%= singular_table_name %>.<%= attribute.name %> %>
       </div>
     <%- end -%>
-      <div class="row">
-        <div class="col-xs-12">
-          <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.created_at') %></label><br/>&nbsp;
-          <%%= @<%= singular_table_name %>.created_at %>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.created_at') %></label><br/>&nbsp;
+        <%%= @<%= singular_table_name %>.created_at %>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.updated_at') %></label><br/>&nbsp;
-          <%%= @<%= singular_table_name %>.updated_at %>
-        </div>
+      <div class="col-sm-6">
+        <label class="fg-label"><%%= t('activerecord.attributes.<%= singular_table_name %>.updated_at') %></label><br/>&nbsp;
+        <%%= @<%= singular_table_name %>.updated_at %>
       </div>
+    </div>
   </div>
 </div>
+
+<%%= render partial: "layouts/record_changes", locals: { :@object => @<%= singular_table_name %> } %>
