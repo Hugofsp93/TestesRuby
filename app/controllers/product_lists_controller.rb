@@ -1,5 +1,4 @@
 class ProductListsController < ApplicationController
-  before_action :load_first_list
   load_and_authorize_resource
 
   # GET /product_lists

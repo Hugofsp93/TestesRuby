@@ -25,10 +25,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def load_first_list
-    @product_list = ProductList.instance
-  end
-
   def set_locale
     I18n.locale = params[:locale] || (current_user && !current_user.locale.blank? ? current_user.locale : false) || I18n.default_locale
     # current_user.update_attributes locale: I18n.locale.to_s if current_user and I18n.locale.to_s != current_user.locale
