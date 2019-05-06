@@ -119,9 +119,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_012739) do
     t.string "name"
     t.string "locale"
     t.boolean "is_active"
-    t.bigint "global_setting_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["global_setting_id"], name: "index_users_on_global_setting_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -147,5 +145,4 @@ ActiveRecord::Schema.define(version: 2019_05_01_012739) do
   add_foreign_key "notifications", "users"
   add_foreign_key "product_lists", "users"
   add_foreign_key "product_names", "product_lists"
-  add_foreign_key "users", "global_settings"
 end
