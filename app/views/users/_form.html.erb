@@ -5,10 +5,10 @@
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
     <!-- <%= f.input :locale, as: :select, collection: I18n.available_locales.map { |x| x.to_s } %> -->
-    <% if current_user.has_role? :admin %>
-      <%= f.input :is_active %>
-      <%= f.input :roles, as: :check_boxes, collection: Hash[Role.global.map{|r| [t(r.name),r.id]}] %>
-    <% end %>
+    <%# if current_user.has_role? :admin %>
+      <%#= f.input :is_active %>
+      <%#= f.input :roles, as: :check_boxes, collection: Hash[Role.global.map{|r| [t(r.name),r.id]}] %>
+    <%# end %>
   <% end %>
 
   <%= f.actions do %>

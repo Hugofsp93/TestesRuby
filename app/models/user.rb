@@ -28,13 +28,16 @@
 #
 
 class User < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   include PgSearch
   has_many :comments, as: :commenteable
+  has_many :product_lists
+  has_one :global_setting
   has_paper_trail :ignore => [:updated_at, :remember_created_at, :last_sign_in_at, :last_sign_in_ip, ]
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
-  devise :database_authenticatable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable
 
   validates :email, presence: true
   validates :name, presence: true, length: { in: 1..80 }

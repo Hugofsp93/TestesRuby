@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Produtos - <%= @product_list.list_name %></h2>    
+    <ul class="actions">
+      <li>
+        <%= link_to product_lists_path, title: t('activerecord.link.back_to_list') do %>
+            <i class="zmdi zmdi-arrow-left"></i>
+        <% end %>
+      </li>
+      <li>
+          <a href="" title="<%= t('Refresh') %>">
+              <i class="zmdi zmdi-refresh-alt"></i>
+          </a>
+      </li>
+      <li>
+				<%= link_to edit_product_list_path(@product_list), title: t('Edit') do %>
+            <i class="zmdi zmdi-edit"></i>
+        <% end if can? :edit, @product_list %>
+      </li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-body card-padding">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th><%= t('activerecord.attributes.product_list.product_name') %></th>
+              <th><%= t('activerecord.attributes.product_list.quantity') %></th>
+              <th><%= t('activerecord.attributes.product_list.measure') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% product_names = @product_list.product_names %>
+            <% if product_names.count == 0 %>
+            <tr>
+              <td colspan="99" class="text-center">Não possui produtos cadastrados.</td>
+            </tr>
+            <% end %>
+            <% product_names.each do |pn| %>
+            <tr>
+              <td><%= pn.product_name %></td>
+              <td><%= pn.quantity %></td>
+              <td><%= pn.measure %></td>
+              <td>
+                <%= link_to edit_product_list_path, title: t('activerecord.link.edit'), class: "waves-effect" do %>
+                <span class="zmdi zmdi-edit"></span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to pn, title: t('activerecord.link.destroy'), class: "waves-effect", method: :delete, data: { confirm: 'Tem certeza? Esta ação não pode ser desfeita, e ela fica registrada nos logs do sistema' } do %>
+                <span class="zmdi zmdi-delete"></span>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

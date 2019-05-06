@@ -5,9 +5,13 @@ module Abilities
 	  def initialize(user)
 	  	# before_ability(user)
 
-	    can :manage, :all
+			can :manage, :all
+			can :manage, User
+			can :manage, ProductList
+			can :manage, GlobalSetting
+			can :mange, ProductName
 	    cannot :manage, Notification
-	    can :destroy, User
+			can :destroy, User
 	    
 	    # after_ability(user)
 	  end

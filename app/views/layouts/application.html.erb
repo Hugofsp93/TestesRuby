@@ -7,7 +7,7 @@
     <meta name="description" content="Roadmaps">
     <meta name="author" content="Roadmaps">
 
-    <title>Roadmaps::Template</title>
+    <title>Lista de Compras</title>
 
     <!-- Vendor CSS -->
 		<%= stylesheet_link_tag    "application", media: "all" %>
@@ -27,7 +27,7 @@
         </li>
 
         <li class="logo">
-          <%= link_to 'Roadmaps::Template', root_path, style: "font-weight: bold" %>
+          <%= link_to 'Lista de Compras', root_path, style: "font-weight: bold" %>
         </li>
 
         <li class="pull-right">
@@ -38,9 +38,9 @@
                 <label for="tw-switch" class="ts-helper"></label>
               </div>
             </li>
-            <% if current_user %>
-              <%= render partial: "layouts/notifications" %>
-            <% end %>
+            <!-- <%# if current_user %>
+              <%#= render partial: "layouts/notifications" %>
+            <%# end %> -->
           </ul>
         </li>
       </ul>
@@ -57,17 +57,17 @@
 
     <section id="main">
       <% if current_user %>
-        <aside id="sidebar" class="sidebar c-overflow">
-          <%= render "layouts/menu" %>
-        </aside>
+      <aside id="sidebar" class="sidebar c-overflow">
+        <%= render "layouts/menu" %>
+      </aside>
       <% else %>
-        <style rel="stylesheet" type="text/css">
-          #menu-trigger {
-            display: none;
-          }
-        </style>
+      <style rel="stylesheet" type="text/css">
+        #menu-trigger {
+          display: none;
+        }
+      </style>
       <% end %>
-
+      
       <section id="content">
         <div class="container">
           <% if notice %>
@@ -88,7 +88,7 @@
     </section>
 
     <footer id="footer">
-      Copyright &copy; 2017 Roadmaps
+      Copyright &copy; 2019 Unibratec
 
       <ul class="f-menu">
         <li><a href="/home/index">Home</a></li>

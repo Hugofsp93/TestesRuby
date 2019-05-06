@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    <h2><%= t('activerecord.models.global_setting.one') %></h2>
+
+    <ul class="actions">
+      <li>
+        <%= link_to home_index_path, title: t('activerecord.link.home') do %>
+        <i class="zmdi zmdi-arrow-left"></i>
+        <% end %>
+      </li>
+      <li>
+          <a href="" title="<%= t('Refresh') %>">
+              <i class="zmdi zmdi-refresh-alt"></i>
+          </a>
+      </li>
+    </ul>
+    <hr>
+</div>
+  <div class="card-body card-padding">
+		<%= render 'form' %>
+	</div>
+</div>

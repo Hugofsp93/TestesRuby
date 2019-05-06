@@ -35,6 +35,7 @@ pt-BR:
   activerecord:
     link:
       back_to_list: "Voltar"
+      home: Início
       details: "Detalhes"
       edit: "Editar"
       destroy: "Apagar"
@@ -46,6 +47,15 @@ pt-BR:
         created: "%{model} foi criado com sucesso."
         updated: "%{model} foi atualizado com sucesso."
     models:
+      product_list:
+        one: Lista de produto
+        other: Lista de produtos
+      global_setting:
+        one: Configuração
+        other: Configurações
+      list: 
+        one: Lista de Compras
+        other: Listas de Compra
       role:
         one: "Perfil de Acersso"
         other: "Perfis de Acesso"
@@ -77,6 +87,22 @@ pt-BR:
         one: "Funcionário"
         other: "Funcionários"
     attributes:
+      product_list:
+        list_name: Nome da lista
+        product_name: Nome do produto
+        quantity: Quantidade
+        measure: Unidade de medida
+        created_at: Criado em
+        updated_at: Atualizado em
+      global_setting:
+        single_list: Lista única
+        created_at: Criado em
+        updated_at: Atualizado em
+      list:
+        product_list: Lista de produtos
+        references: Criada em
+        created_at: Criado em
+        updated_at: Atualizado em
       user:
         id: "Id"
         email: "Email"

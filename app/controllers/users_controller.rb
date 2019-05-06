@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create]
+  skip_load_resource only: [:create, :update]
   load_and_authorize_resource
 
   # GET /users
@@ -22,9 +24,13 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  # @user.global_setting = GlobalSetting.create!(single_list: false, user_id: current_user)
   def create
     @user = User.new(user_params)
     @user.is_active = true
+    @user.global_setting = GlobalSetting.instance
+    @user.product_lists.build(list_name: "Sua Lista")
+ #   @user.product_list_ids << ProductList.instance.id
 
     status = @user.save
 
@@ -38,18 +44,27 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if status
-        format.html { redirect_to @user, notice: 'Usuário criado com sucesso' }
+        format.html { sign_in_and_redirect @user, notice: 'Usuário criado com sucesso' }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+    
+    # @product_list.user = current_user
+    # @product_list.save
+
+    # @global_setting.user = current_user
+    # @global_setting.save
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+
+    @user = User.find_by_id(params[:id])
+
     if (params[:user][:password].blank?)
       params[:user].delete :password
       params[:user].delete :password_confirmation

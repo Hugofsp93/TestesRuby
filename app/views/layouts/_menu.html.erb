@@ -15,45 +15,64 @@
 
 </style>
 <!-- <ul>
-  <li><%= link_to t('home'), home_index_path %></li>
-  <% if can? :manage, User %>
-    <li><%= link_to t('activerecord.models.user.other'), users_path %></li>
-  <% end %>
-  <% if current_user && current_user.has_role?(:admin) %>
-    <li><%= link_to t('auditoria'), home_database_changes_path %></li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li><%= link_to(t('exit'), destroy_user_session_path, :method => :delete) %></li>
-  <% else %>
-    <li><%= link_to('Faça login', new_user_session_path)  %></li>
-  <% end %>
+  <li><%#= link_to t('home'), home_index_path %></li>
+  <%# if can? :manage, User %>
+    <li><%#= link_to t('activerecord.models.user.other'), users_path %></li>
+  <%# end %>
+  <%# if current_user && current_user.has_role?(:admin) %>
+    <li><%#= link_to t('auditoria'), home_database_changes_path %></li>
+  <%# end %>
+  <%# if user_signed_in? %>
+    <li><%#= link_to(t('exit'), destroy_user_session_path, :method => :delete) %></li>
+  <%# else %>
+    <li><%#= link_to('Faça login', new_user_session_path)  %></li>
+  <%# end %>
 </ul> -->
 <ul class="main-menu">
-
   <% if current_user %>
-    <li class="separator"><hr/></li>
+    <div class="profile-pic">
+      <%#= image_tag current_user.avatar.variant(combine_options: { auto_orient: true, resize: '100>', gravity: 'Center', crop: '100x100+0+0' }) if current_user.avatar.attached? %>
+    </div>
     <li>
-      <%= link_to edit_user_registration_path do %>
-        <i class="zmdi zmdi-account"></i>Editar perfil
+      <%= link_to home_index_path do %>
+      <i class="zmdi zmdi-home"></i>Home
       <% end %>
     </li>
+    <li class="separator"><hr/></li>
+    <% if GlobalSetting.instance.single_list == false %>
+      <li>
+        <%= link_to product_lists_path do %>
+        <i class="zmdi zmdi-shopping-cart"></i>Lista de Compras
+        <% end %>
+      </li>
+    <% elsif GlobalSetting.instance.single_list == true %>
+      <li>
+        <% @product_list = ProductList.where(user_id: current_user).first %>
+        <%= link_to @product_list do %>
+        <i class="zmdi zmdi-shopping-cart"></i>Lista de Compras
+        <% end %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to edit_global_setting_path(current_user.global_setting) do %>
+        <i class="zmdi zmdi-account"></i>Configurações
+      <%  end %>
+    </li>
+    <li class="separator"><hr/></li>  
     <li>
       <%= link_to destroy_user_session_path, method: 'DELETE' do %>
         <i class="zmdi zmdi-time-restore"></i>Sair
       <% end %>
     </li>
-    <div class="profile-pic">
-      <%= gravatar_for(current_user, class: "mCS_img_loaded") %>
-    </div>
-  <% end %>
-  <!-- <li class="sub-menu">
-    <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
+    <!-- <li class="sub-menu">
+      <a href=""><i class="zmdi zmdi-view-compact"></i> Headers</a>
 
-    <ul>
-      <li><a href="textual-menu.html">Textual menu</a></li>
-      <li><a href="image-logo.html">Image logo</a></li>
-      <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
-    </ul>
-  </li>
-  <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li> -->
+      <ul>
+        <li><a href="textual-menu.html">Textual menu</a></li>
+        <li><a href="image-logo.html">Image logo</a></li>
+        <li><a href="top-mainmenu.html">Mainmenu on top</a></li>
+      </ul>
+    </li>
+    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li> -->
+    <% end %>
 </ul>

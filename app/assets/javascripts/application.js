@@ -61,6 +61,7 @@
 //= require template/sweet-alert
 //= require template/typeahead.jquery
 //= require template/waves
+//= require cocoon
 
 $(document).ready(function(){
     $.extend($.inputmask.defaults.definitions, {

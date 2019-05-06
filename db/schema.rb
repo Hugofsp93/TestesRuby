@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425200525) do
+ActiveRecord::Schema.define(version: 20190501012739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20180425200525) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "global_settings", force: :cascade do |t|
+    t.boolean "single_list"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_global_settings_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id"
     t.string "text"
@@ -37,6 +45,24 @@ ActiveRecord::Schema.define(version: 20180425200525) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "product_lists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "list_name"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_product_lists_on_user_id"
+  end
+
+  create_table "product_names", force: :cascade do |t|
+    t.string "product_name"
+    t.string "quantity"
+    t.string "measure"
+    t.bigint "product_list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_list_id"], name: "index_product_names_on_product_list_id"
   end
 
   create_table "roles", id: :serial, force: :cascade do |t|
@@ -72,7 +98,9 @@ ActiveRecord::Schema.define(version: 20180425200525) do
     t.string "name"
     t.string "locale"
     t.boolean "is_active"
+    t.bigint "global_setting_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["global_setting_id"], name: "index_users_on_global_setting_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -94,5 +122,9 @@ ActiveRecord::Schema.define(version: 20180425200525) do
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "global_settings", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "product_lists", "users"
+  add_foreign_key "product_names", "product_lists"
+  add_foreign_key "users", "global_settings"
 end

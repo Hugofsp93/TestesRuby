@@ -24,30 +24,35 @@
 #                          GET    /:locale(.:format)                                  home#index {:locale=>/pt-BR/}
 # 
 
+# mount ActionCable.server => '/cable'
 Roadmaps::Application.routes.draw do
-  # Serve websocket cable requests in-process
-  # mount ActionCable.server => '/cable'
 
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+  
+    resources :product_lists
+    resources :product_names
+
+    get 'versions/:model_name', to: "versions#index", as: 'index_versions'
+    get 'versions/:model_name/:id', to: "versions#show", as: 'show_version'
+
     concern :commenteable do
       resources :comments, only: [:index, :create, :destroy]
     end
 
-    # Exemplo de como habilitar rotas de comentários em um resource
-    # resources :nome, concerns: :commenteable
-
     devise_for :users, :skip => [:registrations]
-    as :user do
-      get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
-      put 'users' => 'devise/registrations#update', :as => 'user_registration'
-    end
+    # as :user do
+    #   get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    #   put 'users' => 'devise/registrations#update', :as => 'user_registration'
+    # end
 
     get "home/index"
     get "home/contact"
     get "home/about"
     get "home/database_changes"
 
+    resources :global_settings, only: [:edit, :update]
     resources :users, path: '/admin/users', concerns: :commenteable
+    
     resources :notifications, only: [:index] do
       member do
         post 'mark_read'

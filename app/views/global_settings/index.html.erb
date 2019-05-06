@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-header">
+    <h2><%= t('activerecord.models.global_setting.other') %></h2>
+
+    <ul class="actions">
+        <li>
+            <a href="" title="<%= t('Refresh') %>">
+                <i class="zmdi zmdi-refresh-alt"></i>
+            </a>
+        </li>
+        <li>
+            <%= link_to new_global_setting_path, title: t('activerecord.link.add_new') do %>
+                <i class="zmdi zmdi-plus"></i>
+            <% end if can? :new, GlobalSetting %>
+        </li>
+    </ul>
+</div>
+  <div class="card-body card-padding">
+    <%= render 'layouts/search' %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+              <th><%= t('activerecord.attributes.global_setting.single_list') %></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @global_settings.each do |global_setting| %>
+            <tr>
+                <td><%= global_setting.single_list %></td>
+              <td>
+                <%= link_to global_setting, title: t('activerecord.link.details'), class: "waves-effect" do %>
+                  <span class="zmdi zmdi-search"></span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to edit_global_setting_path(global_setting), title: t('activerecord.link.edit'), class: "waves-effect" do %>
+                  <span class="zmdi zmdi-edit"></span>
+                <% end if can? :edit, global_setting %>
+              </td>
+              <td>
+                <%= link_to global_setting, title: t('activerecord.link.destroy'), class: "waves-effect", method: :delete, data: { confirm: 'Tem certeza? Esta ação não pode ser desfeita, e ela fica registrada nos logs do sistema' } do %>
+                  <span class="zmdi zmdi-delete"></span>
+                <% end if can? :destroy, global_setting %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @global_settings, class: "apple_pagination", previous_label: t('activerecord.link.previous'), next_label: t('activerecord.link.next') %>
+  </div>
+  <br>
+</div>

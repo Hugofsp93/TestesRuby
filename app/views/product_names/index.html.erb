@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header">
+    <h2><%= t('activerecord.models.product_name.other') %></h2>
+
+    <ul class="actions">
+        <li>
+            <a href="" title="<%= t('Refresh') %>">
+                <i class="zmdi zmdi-refresh-alt"></i>
+            </a>
+        </li>
+        <li>
+            <%= link_to new_product_name_path, title: t('activerecord.link.add_new') do %>
+                <i class="zmdi zmdi-plus"></i>
+            <% end if can? :new, ProductName %>
+        </li>
+    </ul>
+</div>
+  <div class="card-body card-padding">
+    <%= render 'layouts/search' %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @product_names.each do |product_name| %>
+            <tr>
+              <td>
+                <%= link_to product_name, title: t('activerecord.link.details'), class: "waves-effect" do %>
+                  <span class="zmdi zmdi-search"></span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to edit_product_name_path(product_name), title: t('activerecord.link.edit'), class: "waves-effect" do %>
+                  <span class="zmdi zmdi-edit"></span>
+                <% end if can? :edit, product_name %>
+              </td>
+              <td>
+                <%= link_to product_name, title: t('activerecord.link.destroy'), class: "waves-effect", method: :delete, data: { confirm: 'Tem certeza? Esta ação não pode ser desfeita, e ela fica registrada nos logs do sistema' } do %>
+                  <span class="zmdi zmdi-delete"></span>
+                <% end if can? :destroy, product_name %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= will_paginate @product_names, class: "apple_pagination", previous_label: t('activerecord.link.previous'), next_label: t('activerecord.link.next') %>
+  </div>
+  <br>
+</div>

@@ -7,6 +7,9 @@ gem 'rails', '5.1.6'
 
 # gem "httparty"
 
+# nested_fields
+gem "cocoon"
+
 #File management
 gem 'paperclip'
 gem 'aws-sdk', '>= 2.0.0'
