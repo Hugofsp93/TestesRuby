@@ -1,5 +1,4 @@
 class GlobalSettingsController < ApplicationController
-  before_action :load_global_setting
   load_and_authorize_resource
 
   # GET /global_settings/1/edit

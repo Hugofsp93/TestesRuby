@@ -2,10 +2,11 @@
 #
 # Table name: product_lists
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  list_name  :string
+#  user_id    :bigint(8)
 #
 
 class ProductList < ApplicationRecord

@@ -79,8 +79,6 @@ GEM
       rack-test (>= 0.5.4)
       xpath (>= 2.0, < 4.0)
     clipboard (1.1.1)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.12)
     coderay (1.1.1)
     coffee-rails (4.2.2)
@@ -360,8 +358,4 @@ RUBY VERSION
    ruby 2.4.5p335
 
 BUNDLED WITH
-<<<<<<< HEAD
-   2.0.1
-=======
    1.17.1
->>>>>>> 81a836c72b5f8164a918004c1ea38c5d84ac75e0

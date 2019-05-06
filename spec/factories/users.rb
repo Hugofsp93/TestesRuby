@@ -25,6 +25,7 @@
 #  name                   :string
 #  locale                 :string
 #  is_active              :boolean
+#  global_setting_id      :bigint(8)
 #
 
 FactoryBot.define do

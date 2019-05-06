@@ -2,8 +2,8 @@
 #
 # Table name: notifications
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
+#  id         :bigint(8)        not null, primary key
+#  user_id    :bigint(8)
 #  text       :string
 #  image_url  :string
 #  link_url   :string

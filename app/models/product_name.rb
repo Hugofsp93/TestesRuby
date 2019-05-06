@@ -2,11 +2,11 @@
 #
 # Table name: product_names
 #
-#  id              :integer          not null, primary key
+#  id              :bigint(8)        not null, primary key
 #  product_name    :string
 #  quantity        :string
 #  measure         :string
-#  product_list_id :integer
+#  product_list_id :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

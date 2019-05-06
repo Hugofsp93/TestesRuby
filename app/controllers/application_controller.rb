@@ -25,10 +25,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def load_global_setting
-    @global_setting = GlobalSetting.instance
-  end
-
   def load_first_list
     @product_list = ProductList.instance
   end

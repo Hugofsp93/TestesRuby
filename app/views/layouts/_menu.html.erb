@@ -31,21 +31,22 @@
 <ul class="main-menu">
   <% if current_user %>
     <div class="profile-pic">
-      <%#= image_tag current_user.avatar.variant(combine_options: { auto_orient: true, resize: '100>', gravity: 'Center', crop: '100x100+0+0' }) if current_user.avatar.attached? %>
+      <%= image_tag current_user.avatar.variant(combine_options: { auto_orient: true, resize: '100>', gravity: 'Center', crop: '100x100+0+0' }) if current_user.avatar.attached? %>
     </div>
+    <li class="separator"><hr/></li>
     <li>
       <%= link_to home_index_path do %>
       <i class="zmdi zmdi-home"></i>Home
       <% end %>
     </li>
     <li class="separator"><hr/></li>
-    <% if GlobalSetting.instance.single_list == false %>
+    <% if current_user.global_setting.single_list == false %>
       <li>
         <%= link_to product_lists_path do %>
         <i class="zmdi zmdi-shopping-cart"></i>Lista de Compras
         <% end %>
       </li>
-    <% elsif GlobalSetting.instance.single_list == true %>
+    <% elsif current_user.global_setting.single_list == true %>
       <li>
         <% @product_list = ProductList.where(user_id: current_user).first %>
         <%= link_to @product_list do %>

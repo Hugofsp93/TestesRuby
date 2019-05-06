@@ -24,11 +24,10 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  # @user.global_setting = GlobalSetting.create!(single_list: false, user_id: current_user)
   def create
     @user = User.new(user_params)
     @user.is_active = true
-    @user.global_setting = GlobalSetting.instance
+    @user.global_setting.create(single_list: false)
     @user.product_lists.build(list_name: "Sua Lista")
  #   @user.product_list_ids << ProductList.instance.id
 
