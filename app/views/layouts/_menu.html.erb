@@ -31,7 +31,7 @@
 <ul class="main-menu">
   <% if current_user %>
     <div class="profile-pic">
-      <%= image_tag current_user.avatar.variant(combine_options: { auto_orient: true, resize: '100>', gravity: 'Center', crop: '100x100+0+0' }) if current_user.avatar.attached? %>
+      <%#= image_tag current_user.avatar.variant(combine_options: { auto_orient: true, resize: '100>', gravity: 'Center', crop: '100x100+0+0' }) if current_user.avatar.attached? %>
     </div>
     <li class="separator"><hr/></li>
     <li>

@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   has_one :global_setting
   has_paper_trail :ignore => [:updated_at, :remember_created_at, :last_sign_in_at, :last_sign_in_ip, ]
   rolify
-  has_one_attached :avatar
+  # has_one_attached :avatar
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable, :registerable
