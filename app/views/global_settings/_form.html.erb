@@ -1,20 +1,10 @@
 <%= semantic_form_for @global_setting do |f| %>
   <%= f.inputs do %>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12" >
         <%= f.input :single_list %>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="material-switch pull-right">
-          <input id="global_setting_single_list_input" name="global_setting[single_list]" type="checkbox"/>
-          <label for="global_setting_single_list" class="label-success"></label>
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
   <% end %>
 
   <%= f.actions do %>

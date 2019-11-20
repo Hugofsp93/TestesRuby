@@ -117,8 +117,9 @@ ActiveRecord::Schema.define(version: 2019_05_01_012739) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "name"
-    t.string "locale"
-    t.boolean "is_active"
+    t.string "phone"
+    t.string "locale", default: "pt-BR"
+    t.boolean "is_active", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

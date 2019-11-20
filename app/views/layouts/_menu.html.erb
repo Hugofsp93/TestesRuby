@@ -49,15 +49,15 @@
     <% elsif current_user.global_setting.single_list == true %>
       <li>
         <% @product_list = ProductList.where(user_id: current_user).first %>
-        <%= link_to @product_list do %>
-        <i class="zmdi zmdi-shopping-cart"></i>Lista de Compras
+        <%= link_to edit_product_list_path(@product_list) do %>
+          <i class="zmdi zmdi-shopping-cart"></i>Lista de Compras
         <% end %>
       </li>
     <% end %>
     <li>
       <%= link_to edit_global_setting_path(current_user.global_setting) do %>
         <i class="zmdi zmdi-account"></i>Configurações
-      <%  end %>
+      <% end %>
     </li>
     <li class="separator"><hr/></li>  
     <li>
