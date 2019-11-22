@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.is_active = true
     @user.global_setting = GlobalSetting.create!(single_list: false, user_id: current_user)
-    @user.product_lists.build(list_name: "Sua Lista")
+    @user.product_lists.build(list_name: "Sua Lista", user_id: current_user.id)
  #   @user.product_list_ids << ProductList.instance.id
 
     status = @user.save

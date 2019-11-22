@@ -14,5 +14,14 @@
 require 'rails_helper'
 
 RSpec.describe ProductName, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  context 'Validations' do
+		# Presence
+    it { is_expected.to validate_presence_of(:product_name) }
+    it { is_expected.to validate_presence_of(:quantity) }
+    it { is_expected.to validate_presence_of(:measure) }
+    it { is_expected.to validate_presence_of(:product_list_id) }
+    # Length
+    it { is_expected.to validate_length_of(:product_name).is_at_least(1).is_at_most(50) }
+  end
 end

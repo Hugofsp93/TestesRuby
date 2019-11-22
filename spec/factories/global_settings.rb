@@ -11,6 +11,6 @@
 
 FactoryBot.define do
   factory :global_setting do
-    single_list false
+    single_list { false }
   end
 end

@@ -12,5 +12,11 @@
 require 'rails_helper'
 
 RSpec.describe ProductList, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'Validations' do
+		# Presence
+    it { is_expected.to validate_presence_of(:list_name) }
+    it { is_expected.to validate_presence_of(:user_id) }
+    # Length
+    it { is_expected.to validate_length_of(:list_name).is_at_least(1).is_at_most(60) }
+  end
 end

@@ -13,6 +13,8 @@
 
 FactoryBot.define do
   factory :product_name do
-    
+    product_name { "TestName" }
+    quantity { "TestQuantity" }
+    measure { "TestMeasure" }
   end
 end

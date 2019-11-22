@@ -16,6 +16,9 @@ class ProductList < ApplicationRecord
   include PgSearch
   has_paper_trail
   
+  validates :list_name, presence: true, length: { in: 1..60 }
+  validates_presence_of :user_id
+
   accepts_nested_attributes_for :product_names, reject_if: :all_blank, allow_destroy: true
   
   def to_s
@@ -29,12 +32,12 @@ class ProductList < ApplicationRecord
       paginate(:per_page => 20, :page => page)
     end
   end
-
-  @@instance = ProductList.create!(list_name: "Sua Lista")
   
-  def self.instance
-    @@instance
-  end
+  # @@instance = ProductList.create!(list_name: "Sua Lista", user_id: User.first.id)
+  
+  # def self.instance
+  #   @@instance
+  # end
 
   pg_search_scope :full_search,
     :against => [:list_name],

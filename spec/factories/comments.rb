@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :comment do
-    text { Faker::Text.text }
+    text { Faker::TvShows::RickAndMorty.quote }
 		user
 		commenteable { user }
   end

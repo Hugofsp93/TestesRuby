@@ -14,6 +14,10 @@
 class ProductName < ApplicationRecord
   belongs_to :product_list
   
+  validates :quantity, :measure, presence: true
+  validates :product_name, presence: true, length: { in: 1..50 }
+  validates_presence_of :product_list_id
+  
   include PgSearch
   has_paper_trail
 

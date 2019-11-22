@@ -11,8 +11,7 @@
 
 FactoryBot.define do
   factory :product_list do
-    product_name "MyString"
-    quantity "MyString"
-    measure "MyString"
+    list_name { "TestListName" }
+    user_id { 1 }
   end
 end

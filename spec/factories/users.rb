@@ -34,7 +34,7 @@ FactoryBot.define do
 		# avatar {File.new("#{Rails.root}/app/assets/images/email_img.png")}
 		name { Faker::Name.name }
 		email { Faker::Internet.email  }
-		password 'lklklklk'
+		password { 'lklklklk' }
 		password_confirmation { password }
 		# cnpj { Faker::CNPJ.numeric }
 	end
