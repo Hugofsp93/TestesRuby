@@ -60,7 +60,7 @@ RSpec.describe ProductListsController, type: :controller do
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_successfulful
+      expect(response).to have_http_status(302)
     end
   end
 
