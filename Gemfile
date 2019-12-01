@@ -91,12 +91,16 @@ end
 group :development, :test do
   # gem 'sqlite3'
   # gem 'byebug'
+  gem 'simplecov', require: false
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.6'
-  gem 'spring-commands-rspec'
   gem 'capybara'
+  gem 'selenium-webdriver', '~> 3.142.6'
+  # gem 'chromedriver-helper' # deprecated
+  gem 'webdrivers', '~> 4.0'
+  gem 'spring-commands-rspec'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'faker'
   gem 'cpf_faker'
