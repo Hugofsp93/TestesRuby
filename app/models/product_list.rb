@@ -17,7 +17,7 @@ class ProductList < ApplicationRecord
   has_paper_trail
   
   validates :list_name, presence: true, length: { in: 1..60 }
-  validates_presence_of :user_id
+  # validates_presence_of :user
 
   accepts_nested_attributes_for :product_names, reject_if: :all_blank, allow_destroy: true
   

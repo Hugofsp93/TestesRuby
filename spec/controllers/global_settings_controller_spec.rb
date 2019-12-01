@@ -83,10 +83,10 @@ RSpec.describe GlobalSettingsController, type: :controller do
       }}
 
       it "updates the requested global_setting" do
-        global_setting = GlobalSetting.create! new_attributes
+        global_setting = GlobalSetting.create! valid_attributes
         put :update, params: {id: global_setting.to_param, global_setting: new_attributes}, session: valid_session
         global_setting.reload
-        skip("Add assertions for updated state")
+        expect(response).to be_redirect
       end
 
       it "redirects to the global_setting" do

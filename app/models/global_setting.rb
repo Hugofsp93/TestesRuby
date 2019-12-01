@@ -12,7 +12,7 @@
 class GlobalSetting < ApplicationRecord
   has_paper_trail
   belongs_to :user
-
+  
   def self.search(search, page)
     if search && search != ""
       paginate(:per_page => 20, :page => page).full_search(search)
