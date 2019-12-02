@@ -14,7 +14,4 @@ Todos os testes ficam localizados na pasta app/spec. Nesta pasta, estão dividos
   * Testes de integração ficam localizados na pasta test/models, utilizando mocks para cadastrar o usuário, mesmo ele não dependendo de outra classe
   * Testes de sistema/funcionais ficam localizados na pasta test/controllers
   * O uso de suites de teste para organizar os testes já são divididos por classe, dentro de cada pasta de forma automática pela gema (lib) RSPEC
-  * Por fim, a análise de cobertura teve algumas limitações, pois eu uso meu ambiente virtualizado do Ubuntu no MacOS e não contempla nenhum elemento visual, mas é possível verificar a cobertura dos testes quando rodamos o rspec no console (tá com cerca de 73% de cobertura)
-
-
-
+  * Por fim, para visualizar a análise de cobertura, basta rodar os testes no console com o rspec que ele cria um html no diretório. Basta abrir-lo no navegador e ver os resultados (cerca de 73,1% coberto)
