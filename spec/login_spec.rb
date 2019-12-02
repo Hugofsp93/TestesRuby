@@ -1,25 +1,19 @@
-require 'selenium-webdriver'
-require 'webdrivers'
+require "rails_helper"
 
-describe 'Login' do
-  
-  before :each do
-    chromedriver_path = File.join(File.absolute_path('../', File.dirname(__FILE__)), "test", "browsers", "chromedriver")
-    # Selenium::WebDriver::Chrome.driver_path = chromedriver_path
-    Selenium::WebDriver::Chrome::Service.driver_path = chromedriver_path
-    @driver = Selenium::WebDriver.for :chrome
+RSpec.feature "Teste funcional automatizado da tela de login" do
+  it "Teste de login realizado com sucesso" do
+    visit "/"
+    fill_in 'Email', with: 'hugo@unibratec.com'
+    fill_in 'Senha', with: 'lklklklk'
+    click_button 'Log in'
+    expect(page).to have_no_content('Para continuar, efetue login ou registre-se.')
   end
 
-  after :each do
-    @driver.quit
+  it "Teste com senha incorreta" do
+    visit "/"
+    fill_in 'Email', with: 'hugo@unibratec.com'
+    fill_in 'Senha', with: 'errada'
+    click_button 'Log in'
+    expect(page).to have_content('E-mail ou senha inválidos.')
   end
-
-  it 'succeeded' do
-    @driver.get 'http://localhost:3000'
-    @driver.find_element(id: 'username').send_keys 'username'
-    @driver.find_element(id: 'password').send_keys 'password'
-    @driver.find_element(id: 'login').submit
-    expect(@driver.find_element(css: '.success').displayed?).to be(true)
-  end
-
 end

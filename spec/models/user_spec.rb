@@ -31,13 +31,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  
-
 	context 'Validations' do
 		# Presence
-		it { is_expected.to validate_presence_of(:email) }	
-		it { is_expected.to validate_presence_of(:name) }	
+		it { is_expected.to validate_presence_of(:email) }
+		it { is_expected.to validate_presence_of(:name) }
 		# Length
 		it { is_expected.to validate_length_of(:name).is_at_least(1).is_at_most(80) }
-  end
+	end
+	
+	context 'Usuário válido' do
+		let(:user) { build(:user) }
+		it 'todas as informações OK' do
+			expect(user).to be_valid
+		end
+	end
+
+	context 'Usuário sem email' do
+		let(:user) { build(:user, email: nil) }
+		it 'teste deve ser inválido' do
+			expect(user).not_to be_valid
+		end  
+	end
 end
