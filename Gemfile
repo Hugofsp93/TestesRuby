@@ -14,7 +14,7 @@ gem "cocoon"
 # gem 'paperclip'
 # gem 'aws-sdk', '>= 2.0.0'
 gem "aws-sdk-s3", require: false
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 #PaperTrail to track any changes on tables
 gem 'paper_trail'
